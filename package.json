@@ -1,0 +1,85 @@
+{
+  "name": "ibs-generator",
+  "version": "1.0.0",
+  "description": "Automatically generate IBS (Illustrator for BioSequence) diagrams from raw data and XML templates",
+  "author": "Tui Lab",
+  "license": "MIT",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuilab/ibs-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tuilab/ibs-generator/issues"
+  },
+  "homepage": "https://tuilab.github.io/ibs-generator/",
+  "files": [
+    "dist"
+  ],
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "proseWrap": "preserve"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "browserslist": "> 1%, not IE 11",
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^6.1.3",
+    "@commitlint/config-conventional": "^6.1.3",
+    "core-js": "^2.5.4",
+    "danger": "^3.3.2",
+    "danger-plugin-jest": "^1.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
+    "flow-bin": "^0.68.0",
+    "normalize.css": "^8.0.0",
+    "prettier": "^1.11.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1",
+    "react-test-renderer": "^16.2.0",
+    "source-map-explorer": "^1.5.0",
+    "standard-version": "^4.3.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && source-map-explorer --html build/static/js/main.* > build/source-map-explorer.html",
+    "dist": "CI=true yarn build",
+    "flow": "flow",
+    "danger": "danger ci --verbose",
+    "release": "standard-version --no-verify",
+    "test": "yarn test:coverage",
+    "test:coverage": "react-scripts test --env=jsdom --coverage",
+    "test:watch": "react-scripts test --env=jsdom",
+    "linter:css": "prettier --list-different",
+    "linter:md": "prettier --list-different",
+    "linter:commit": "commitlint",
+    "report:coverage": "open coverage/lcov-report/index.html",
+    "report:build": "open public/source-map-explorer.html",
+    "formatter": "prettier --write",
+    "lint": "yarn linter:css -- src/**/*.css && yarn linter:md -- '**/*.md'",
+    "format": "yarn formatter -- '**/*.md' src/**/*.js src/**/*.css",
+    "test:ci": "yarn lint && yarn flow && yarn dist && yarn test:coverage -- --outputFile build/test-results.json --json",
+    "prepublishOnly": "yarn dist"
+  }
+}

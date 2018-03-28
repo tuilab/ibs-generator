@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders 1`] = `
+<div
+  className="App"
+>
+  <h2>
+    Hello IBS
+  </h2>
+</div>
+`;
