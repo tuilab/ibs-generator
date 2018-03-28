@@ -17,8 +17,5 @@ const template = fs.readFileSync(path.join(testData, "example.xml"), "utf-8")
 describe(pkg.name, () => {
   it("works", () => {
     const result = run(csv, template)
-    fs.writeFile(path.join(testData, "result.xml"), result, "utf-8", () => {
-      console.log(`wrote XML to ${testData}`)
-    })
   })
 })
