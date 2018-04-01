@@ -1,0 +1,30 @@
+language: node_js
+cache:
+  yarn: true
+before_install:
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.5.1
+- export PATH=$HOME/.yarn/bin:$PATH
+install:
+- yarn
+- yarn global add coveralls
+script:
+- yarn test:ci
+- yarn release --dry-run
+after_success:
+- mv coverage/lcov-report build || true
+- cat ./coverage/lcov.info | coveralls
+branches:
+  except:
+  - gh-pages
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: build
+  github_token: "$GITHUB_TOKEN"
+  on:
+    branch: master
+notifications:
+  email: false
+env:
+  global:
+    secure: zQX+913w2uR1hMmhrf8zwM/V2LzaOB8bfCMkutmNahfF2CuaLujaYUoNxePCqMly1RzkAkUOV/lrXeKvmA3zv9PV1CKhWiTS60OQpNki10QDrcHXufwANeatTwDW8MdDoOqP25zU4M9D0APvVyddKRtkoHBRNxAT5Q3Igw/AcQQBX6tvLVCyU5m/ZsQNIiFOSci1M1Ih/FdXly5R2VIVNzthhdi/zqpB932QcMjjMnPLhEq89t9Aw8XuDRbLVJ7gCLwCtMkj27IqHSd7qL6HtTPG7WCwebZmFHQzsL8juP93r3OvOSYdHx62wL8/39YIyqaUeV4H/0sVDWIjun9X5e03GO9M6pqWI+LsP8gh9vngTxkIwJK22A5un46ENMC2b1xSbCd4sLdXhvw13z+9FNfXCfTxcUriVPnjQjgNygzt5/6I6EvNZO7gHHPVzyAk6rgAvQKoaLPpni2ZaP8JNLJZPMwbgUoGDMjG1oxRTqtb2XjdFj8ARQsUvfCn8PzceEqGHB/i3pVdZ24dJ0oDunut+7gkZEP57Zoevfu5zAFEJJeQMlsINDX0S6KZWG3lQiN/ixFkwD7ZlUdEX8wTUGvy0OVa+MnuMAU/pilNDIM35Nk3M2OjkYA/QNXYpF9yAjpItjmz4T5B2W2mMCVkl2slXsO+xb0OsAZW2zkIkPI=
