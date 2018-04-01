@@ -1,6 +1,6 @@
 # [Draft.js filters](https://tuilab.github.io/ibs-generator/) [![Build Status](https://travis-ci.org/tuilab/ibs-generator.svg?branch=master)](https://travis-ci.org/tuilab/ibs-generator) [![Coverage Status](https://coveralls.io/repos/github/tuilab/ibs-generator/badge.svg)](https://coveralls.io/github/tuilab/ibs-generator)
 
-> Automatically generate [IBS](http://ibs.biocuckoo.org/) (*Illustrator for BioSequence*) diagrams from raw data and XML templates.
+> Automatically generate [IBS](http://ibs.biocuckoo.org/) (_Illustrator for BioSequence_) diagrams from raw data and XML templates.
 
 ## Contributing
 
