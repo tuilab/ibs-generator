@@ -39,41 +39,41 @@ SNAPSHOT_STAGED=$(grep .snap$ <<< "$STAGED" || true)
 if [ -n "$JS_FULLY_STAGED" ];
 then
     # Format and re-stage fully staged files only.
-    yarn formatter -s -- $JS_FULLY_STAGED
+    yarn formatter $JS_FULLY_STAGED
     git add $JS_FULLY_STAGED
 fi
 
 if [ -n "$CSS_FULLY_STAGED" ];
 then
-    yarn formatter -s -- $CSS_FULLY_STAGED
+    yarn formatter $CSS_FULLY_STAGED
     git add $CSS_FULLY_STAGED
 fi
 
 if [ -n "$CSS_STAGED" ];
 then
-    yarn linter:css -s -- $CSS_STAGED
+    yarn linter:css $CSS_STAGED
 fi
 
 if [ -n "$JSON_FULLY_STAGED" ];
 then
-    yarn formatter -s -- $JSON_FULLY_STAGED
+    yarn formatter $JSON_FULLY_STAGED
     git add $JSON_FULLY_STAGED
 fi
 
 if [ -n "$JSON_STAGED" ];
 then
-    yarn linter:json -s -- $JSON_STAGED
+    yarn linter:json $JSON_STAGED
 fi
 
 if [ -n "$MD_FULLY_STAGED" ];
 then
-    yarn formatter -s -- $MD_FULLY_STAGED
+    yarn formatter $MD_FULLY_STAGED
     git add $MD_FULLY_STAGED
 fi
 
 if [ -n "$MD_STAGED" ];
 then
-    yarn linter:md -s -- $MD_STAGED
+    yarn linter:md $MD_STAGED
 fi
 
 if [ -n "$JS_STAGED" ] || [ -n "$SNAPSHOT_STAGED" ];

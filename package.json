@@ -76,6 +76,7 @@
     "test:coverage": "react-scripts test --env=jsdom --coverage",
     "test:watch": "react-scripts test --env=jsdom",
     "linter:css": "prettier --list-different",
+    "linter:json": "prettier --list-different",
     "linter:md": "prettier --list-different",
     "linter:commit": "commitlint",
     "report:coverage": "open coverage/lcov-report/index.html",
