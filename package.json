@@ -62,7 +62,9 @@
     "source-map-explorer": "^1.5.0",
     "standard-version": "^4.3.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "sheetclip": "^0.3.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && source-map-explorer --html build/static/js/main.* > build/source-map-explorer.html",

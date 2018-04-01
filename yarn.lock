@@ -7450,6 +7450,10 @@ shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
 
+sheetclip@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/sheetclip/-/sheetclip-0.3.0.tgz#3e7fa496f158fe7b7bd6cc2ec51a09fbe7f48848"
+
 shell-quote@1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.6.1.tgz#f4781949cce402697127430ea3b3c5476f481767"
