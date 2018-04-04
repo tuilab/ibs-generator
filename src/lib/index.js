@@ -10,6 +10,18 @@ const attrMap = {
 
 const colors = ["153,153,255", "255,153,153", "255,255,153", "153,255,153"]
 
+const getLabelHeight = (curr, prev = null) => {
+  if (!prev) {
+    return 50
+  }
+
+  const nbDigits = `${curr.position}`.length
+  const threshold = nbDigits * 5
+  const isNear = curr.position - prev.position < threshold
+
+  return isNear ? prev.height + 20 : 50
+}
+
 export const mapCSVRow = (row) => {
   const cols = Object.keys(row)
   const protein = cols.reduce(
@@ -49,14 +61,23 @@ export const mapCSVRow = (row) => {
     .filter((col, i, self) => self.indexOf(col) === i)
 
   protein.labels = labels
-    .filter((label) => !!row[`Cys Pos ${label}`])
-    .map((label, i) => {
+    .filter((site) => !!row[`Cys Pos ${site}`])
+    .map((site, i) => {
       return {
         id: `L${i + 1}`,
-        position: row[`Cys Pos ${label}`],
-        label: row[`Cys Pos ${label}`],
+        position: parseInt(row[`Cys Pos ${site}`], 10),
+        label: row[`Cys Pos ${site}`],
       }
     })
+
+  let prevLabel
+  protein.labels = protein.labels.map((label, i) => {
+    prevLabel = i === 0 ? null : protein.labels[i - 1]
+
+    label.height = getLabelHeight(label, prevLabel)
+
+    return label
+  })
 
   return protein
 }
