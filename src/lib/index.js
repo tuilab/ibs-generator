@@ -10,16 +10,33 @@ const attrMap = {
 
 const colors = ["153,153,255", "255,153,153", "255,255,153", "153,255,153"]
 
-const getLabelHeight = (curr, prev = null) => {
+const getLabelCoordinates = (curr, prev = null) => {
   if (!prev) {
-    return 50
+    return {
+      centerx: curr.position,
+      deltax: curr.position,
+      centery: 50,
+      deltay: 50,
+    }
   }
 
   const nbDigits = `${curr.position}`.length
-  const threshold = nbDigits * 5
-  const isNear = curr.position - prev.position < threshold
+  const positionThreshold = nbDigits * 5
+  // const xDelta = nbDigits * 2
+  const xDelta = 6
+  const isNear = curr.position - prev.position < positionThreshold
 
-  return isNear ? prev.height + 20 : 50
+  const centerx = isNear
+    ? curr.position + (prev.centerx - prev.position) + xDelta
+    : curr.position
+  const centery = isNear ? prev.centery + 20 : 50
+
+  return {
+    centerx: centerx,
+    deltax: curr.position,
+    centery: centery,
+    deltay: centery,
+  }
 }
 
 export const mapCSVRow = (row) => {
@@ -74,9 +91,8 @@ export const mapCSVRow = (row) => {
   protein.labels = protein.labels.map((label, i) => {
     prevLabel = i === 0 ? null : protein.labels[i - 1]
 
-    label.height = getLabelHeight(label, prevLabel)
-
-    return label
+    // TODO relies on object mutation.
+    return Object.assign(label, getLabelCoordinates(label, prevLabel))
   })
 
   return protein
